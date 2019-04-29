@@ -126,7 +126,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center'
   },
   scrollContainer: {
-    paddingTop: 30
+    paddingTop: 45
   }
 
 });
