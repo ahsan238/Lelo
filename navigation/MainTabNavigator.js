@@ -1,18 +1,17 @@
 import React from 'react';
 import { Platform } from 'react-native';
 import { createStackNavigator, createBottomTabNavigator } from 'react-navigation';
-
 import TabBarIcon from '../components/TabBarIcon';
-import HomeScreen from '../screens/HomeScreen';
-import AdvertismentScreen from '../screens/AdvertismentScreen';
-import ProfileScreen from '../screens/ProfileScreen';
+import HomeScreen from '../screens/HomeScreen/HomeScreen';
+import AdvertismentScreen from '../screens/AdvertismentScreen/AdvertisementScreen';
+import ProfileScreen from '../screens/ProfileScreen/index';
 
 const HomeStack = createStackNavigator({
   Home: HomeScreen,
 });
 
 HomeStack.navigationOptions = {
-  tabBarLabel: 'Home',
+  tabBarLabel: 'Products',
   tabBarIcon: ({ focused }) => (
     <TabBarIcon
       focused={focused}
@@ -30,7 +29,7 @@ const AdvertismentStack = createStackNavigator({
 });
 
 AdvertismentStack.navigationOptions = {
-  tabBarLabel: 'Advertiments',
+  tabBarLabel: 'Post an Ad',
   tabBarIcon: ({ focused }) => (
     <TabBarIcon
       focused={focused}
@@ -44,7 +43,7 @@ const ProfileStack = createStackNavigator({
 });
 
 ProfileStack.navigationOptions = {
-  tabBarLabel: 'Profile',
+  tabBarLabel: 'My profile',
   tabBarIcon: ({ focused }) => (
     <TabBarIcon
       focused={focused}
