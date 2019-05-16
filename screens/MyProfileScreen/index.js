@@ -30,8 +30,8 @@ export default class MyProfileScreen extends React.Component {
   }
   
   componentDidMount() {
-    const { product } = this.props.navigation.state.params;
-    const userId = product.uid;
+    const userId = firebase.auth().currentUser.uid;
+
     firebase.database().ref('users/'+ userId).once('value', function (snapshot) {
       const user = snapshot.val();
       this.setState({
@@ -69,7 +69,6 @@ export default class MyProfileScreen extends React.Component {
   }
 
   render() {
-    const { product } = this.props.navigation.state.params;
     return (
       <View style={styles.container}>
         <ScrollView style={styles.container} contentContainerStyle={styles.contentContainer}>
@@ -78,11 +77,12 @@ export default class MyProfileScreen extends React.Component {
               leftComponent={
               <Button 
                 onPress={() => {
-                  this.props.navigation.navigate("Product", {product: product})
+                  console.log('logged out');
+                  this.props.navigation.navigate("Login");
                 }}
                 icon={
                   <Icon.Ionicons
-                    name={Platform.OS === 'ios' ? 'ios-arrow-back' : 'md-arrow-back'}
+                    name={Platform.OS === 'ios' ? 'ios-log-out' : 'md-log-out'}
                     color={'white'}
                     size={26}
                     // style={{ marginBottom: 15 }}
@@ -90,6 +90,21 @@ export default class MyProfileScreen extends React.Component {
                 }
               />}
               centerComponent={{ text: 'Profile',size: 26,style: { color: '#fff' } }}
+              rightComponent={
+              <Button 
+                onPress={() => {
+                  // console.log('logged out');
+                  this.props.navigation.navigate("EditProfile");
+                }}
+                icon={
+                  <Icon.AntDesign
+                    name={'edit'}
+                    color={'white'}
+                    size={26}
+                    // style={{ marginBottom: 15 }}
+                  />
+                }
+              />}
             />
             {this.renderImage()}
           </View>

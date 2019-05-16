@@ -2,16 +2,17 @@ import React from 'react';
 import { Platform } from 'react-native';
 import { createStackNavigator, createBottomTabNavigator } from 'react-navigation';
 import TabBarIcon from '../components/TabBarIcon';
-import HomeScreen from '../screens/HomeScreen/HomeScreen';
-import AdvertismentScreen from '../screens/AdvertismentScreen/AdvertisementScreen';
-import ProfileScreen from '../screens/ProfileScreen/index';
+import HomeScreen from '../screens/HomeScreen/index';
+import SellScreen from '../screens/SellScreen/index';
+import MyAdsScreen from '../screens/MyAdsScreen/index';
+import MyProfileScreen from '../screens/MyProfileScreen/index';
 
 const HomeStack = createStackNavigator({
   Home: HomeScreen,
 });
 
 HomeStack.navigationOptions = {
-  tabBarLabel: 'Products',
+  tabBarLabel: 'Home',
   tabBarIcon: ({ focused }) => (
     <TabBarIcon
       focused={focused}
@@ -24,12 +25,26 @@ HomeStack.navigationOptions = {
   ),
 };
 
-const AdvertismentStack = createStackNavigator({
-  Advertiments: AdvertismentScreen,
+const SellStack = createStackNavigator({
+  Sell: SellScreen,
 });
 
-AdvertismentStack.navigationOptions = {
-  tabBarLabel: 'Post an Ad',
+SellStack.navigationOptions = {
+  tabBarLabel: 'Sell',
+  tabBarIcon: ({ focused }) => (
+    <TabBarIcon
+      focused={focused}
+      name={Platform.OS === 'ios' ? 'ios-camera' : 'md-camera'}
+    />
+  ),
+};
+
+const MyAdsStack = createStackNavigator({
+  MyAds: MyAdsScreen,
+});
+
+MyAdsStack.navigationOptions = {
+  tabBarLabel: 'My Ads',
   tabBarIcon: ({ focused }) => (
     <TabBarIcon
       focused={focused}
@@ -38,12 +53,12 @@ AdvertismentStack.navigationOptions = {
   ),
 };
 
-const ProfileStack = createStackNavigator({
-  Profile: ProfileScreen,
+const MyProfileStack = createStackNavigator({
+  MyProfile: MyProfileScreen,
 });
 
-ProfileStack.navigationOptions = {
-  tabBarLabel: 'My profile',
+MyProfileStack.navigationOptions = {
+  tabBarLabel: 'Profile',
   tabBarIcon: ({ focused }) => (
     <TabBarIcon
       focused={focused}
@@ -54,6 +69,7 @@ ProfileStack.navigationOptions = {
 
 export default createBottomTabNavigator({
   HomeStack,
-  AdvertismentStack,
-  ProfileStack,
+  SellStack,
+  MyAdsStack,
+  MyProfileStack,
 });

@@ -1,6 +1,14 @@
 import React, { Component } from "react";
 import styles from "./style";
-import {Image, Keyboard, Text, View, TextInput, TouchableWithoutFeedback, Alert, KeyboardAvoidingView} from 'react-native';
+import {
+  Image, 
+  Keyboard, 
+  Text, 
+  View, 
+  TextInput, 
+  TouchableWithoutFeedback, 
+  Alert, 
+  KeyboardAvoidingView} from 'react-native';
 import { Header, Button } from 'react-native-elements';
 import firebase from 'firebase';
 
@@ -67,7 +75,7 @@ export default class LoginScreen extends Component {
                   }}
                   title="Signup"
                 />
-              </View>
+                </View>
             </View>
           </View>
         </TouchableWithoutFeedback>

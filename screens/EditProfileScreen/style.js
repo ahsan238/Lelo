@@ -34,6 +34,15 @@ export default {
     color: "black",
     textAlign: 'center'
   },
+  uploadButton: {
+    // backgroundColor: "transparent",
+    borderRadius: 5,
+    height: 45,
+    marginTop: 10,
+    marginBottom: 4,
+    marginRight: width * 0.04,
+    marginLeft: width * 0.04
+  },
   signupButton: {
     backgroundColor: 'red',
     borderRadius: 5,
@@ -50,4 +59,12 @@ export default {
     marginBottom: 10,
     marginLeft: -10,
   },
+  loading: [
+    StyleSheet.absoluteFill,
+    {
+      backgroundColor: 'rgba(0,0,0,0.4)',
+      alignItems: 'center',
+      justifyContent: 'center',
+    },
+  ]
 };

@@ -8,13 +8,15 @@ import MainApp from './MainApp'
 import firebase from 'firebase'
 import _ from 'lodash';
 
-YellowBox.ignoreWarnings(['Setting a timer']);
-const _console = { ...console };
-console.warn = message => {
-  if (message.indexOf('Setting a timer') <= -1) {
-    _console.warn(message);
-  }
-};
+// YellowBox.ignoreWarnings(['Setting a timer']);
+// const _console = { ...console };
+// console.warn = message => {
+//   if (message.indexOf('Setting a timer') <= -1) {
+//     _console.warn(message);
+//   }
+// };
+
+console.disableYellowBox = true;
 
 I18nManager.forceRTL(false);
 

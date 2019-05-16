@@ -2,6 +2,7 @@ import React from 'react';
 import styles from "./style";
 import { Icon } from 'expo';
 import {
+  Alert,
   ActivityIndicator,
   Image,
   ScrollView,
@@ -12,14 +13,14 @@ import {
   TouchableOpacity,
   FlatList,
 } from 'react-native';
-import { Header, Button, SearchBar} from 'react-native-elements';
+import { Header,Button } from 'react-native-elements';
 import ProductCard from "../../components/productCard";
 import firebase from 'firebase';
 
-export default class HomeScreen extends React.Component {
+export default class MyAdsScreen extends React.Component {
   constructor(props){
     super(props);
-    
+
     this.state = {
       isLoading: true,
       products: {},
@@ -66,15 +67,15 @@ export default class HomeScreen extends React.Component {
   };
 
   renderlist() {
+    const userId = firebase.auth().currentUser.uid;
     const {search,products} = this.state;
     const filteredProducts = products.filter(item =>{
-      if(search){
-        return item.name==search
+      if(!search){
+        return item.uid===userId
       } else {
-        return true
+        return (item.uid===userId && item.name==search)
       }
     })
-
     return (
       <FlatList
         data={filteredProducts}
@@ -86,11 +87,32 @@ export default class HomeScreen extends React.Component {
           <View>
             <TouchableOpacity
               onPress={() => {
-                this.props.navigation.navigate("Product", {product: item})
-                }
-              }
+                Alert.alert(
+                  '',
+                  '',
+                  [
+                    {text: 'View', onPress: () => console.log('View')},
+                    {text: 'Delete', onPress: () => {
+                      let itemId = item.id
+                      console.log('Delete')
+                      // console.log(item.key)
+                      itemKey = item.key
+                      firebase.database().ref('products/'+itemKey).remove()
+                    }},
+                    {text: 'Change', onPress: () => {
+                      console.log('Change')
+                    }},
+                    {
+                      text: 'Cancel',
+                      onPress: () => console.log('Cancel Pressed'),
+                      style: 'cancel',
+                    },
+                  ],
+                  {cancelable: false},
+                );
+              }}
             >
-              <ProductCard product={item} />            
+              <ProductCard product={item} />
             </TouchableOpacity>
           </View>
         )}
@@ -104,7 +126,7 @@ export default class HomeScreen extends React.Component {
         <View style={styles.welcomeContainer}>
           <Header
             leftComponent={
-            <Button 
+            <Button
               onPress={() => {
                 this.props.navigation.navigate("Login");
               }}
@@ -116,9 +138,9 @@ export default class HomeScreen extends React.Component {
                 />
               }
             />}
-            centerComponent={{ text: 'Home',size: 26,style: { color: '#fff' } }}
+            centerComponent={{ text: 'My Advertisments',size: 26,style: { color: '#fff' } }}
             rightComponent={
-              <Button 
+              <Button
                 onPress={() => {this.setState(prevState => ({displaySearchBar: !prevState.displaySearchBar})); } }
                 icon={
                   <Icon.Ionicons
@@ -140,7 +162,7 @@ export default class HomeScreen extends React.Component {
             <View style={styles.welcomeContainer}>
               <Header
                 leftComponent={
-                <Button 
+                <Button
                   onPress={() => {
                     this.props.navigation.navigate("Login");
                   }}
@@ -152,9 +174,9 @@ export default class HomeScreen extends React.Component {
                     />
                   }
                 />}
-                centerComponent={{ text: 'Home',size: 26,style: { color: '#fff' } }}
+                centerComponent={{ text: 'My Advertisments',size: 26,style: { color: '#fff' } }}
                 rightComponent={
-                  <Button 
+                  <Button
                     onPress={() => {this.setState(prevState => ({displaySearchBar: !prevState.displaySearchBar})); } }
                     icon={
                       <Icon.Ionicons
