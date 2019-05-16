@@ -1,11 +1,22 @@
 import React from 'react';
 import { Ionicons } from '@expo/vector-icons';
 import { AntDesign } from '@expo/vector-icons';
-import { StyleSheet, View, Text, I18nManager } from 'react-native';
+import { YellowBox, StyleSheet, View, Text, I18nManager } from 'react-native';
 import { LinearGradient } from 'expo';
 import AppIntroSlider from 'react-native-app-intro-slider';
 import MainApp from './MainApp'
 import firebase from 'firebase'
+import _ from 'lodash';
+
+// YellowBox.ignoreWarnings(['Setting a timer']);
+// const _console = { ...console };
+// console.warn = message => {
+//   if (message.indexOf('Setting a timer') <= -1) {
+//     _console.warn(message);
+//   }
+// };
+
+console.disableYellowBox = true;
 
 I18nManager.forceRTL(false);
 
@@ -38,21 +49,21 @@ const slides = [
   {
     key: 'somethun',
     title: 'Welcome to LeLo',
-    text: 'Lelo is a LUMS project. You can say it a special OLX only for LUMS students ',
+    text: 'Lelo is an exclusive LUMS based project ',
     icon: "heart" ,
     colors: ['#63E2FF', '#B066FE'],
   },
   {
     key: 'somethun1',
-    title: 'Create account',
-    text: 'Quickly create an account with a lums email address',
+    title: 'Create an account. It is free!',
+    text: 'Quickly create an account with a LUMS email account',
     icon: 'addusergroup',
     colors: ['#A3A1FF', '#3A3897'],
   },
   {
     key: 'somethun2',
-    title: 'No need to thanks me',
-    text: 'Usage is all free from MAG.',
+    title: 'We will take care of your needs',
+    text: '',
     icon: 'layout',
     colors: ['#29ABE2', '#4F00BC'],
   },
@@ -62,7 +73,7 @@ export default class App extends React.Component {
 
   constructor(props){
     super(props)
-
+    console.disableYellowBox = true;
     this.state = {
       intro: true
     }
@@ -70,13 +81,13 @@ export default class App extends React.Component {
 
   componentWillMount(){
     var config = {
-      apiKey: "AIzaSyCA0O5DmJadI5DgjeMRHIRZWWHTurGGbR0",
-      authDomain: "lelo-d8ad3.firebaseapp.com",
-      databaseURL: "https://lelo-d8ad3.firebaseio.com",
-      projectId: "lelo-d8ad3",
-      storageBucket: "lelo-d8ad3.appspot.com",
-      messagingSenderId: "438480207725"
-    };
+      apiKey: "AIzaSyCBR6Vg1OUAXK7KU0sMya0lrbBBS0R9mx4",
+      authDomain: "lelo-b176e.firebaseapp.com",
+      databaseURL: "https://lelo-b176e.firebaseio.com",
+      projectId: "lelo-b176e",
+      storageBucket: "lelo-b176e.appspot.com",
+      messagingSenderId: "20878009337"
+      };
     firebase.initializeApp(config);
   }
 
